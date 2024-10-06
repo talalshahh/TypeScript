@@ -1,12 +1,27 @@
-"use strict";
+let myName: string;
+let meaningLife: number;
+let isLoading: boolean;
+let album: any;
 
-let username = "talal";
-console.log(username);
+myName = "Hassan";
+isLoading = true;
+meaningLife = 45;
+album = true;
 
-let a: number = 12;
-let b: string = "6";
-let c: number = 2;
+console.log(myName);
 
-console.log(a / b);
+let a = 12;
+let b = "6";
 
-console.log(c * b);
+let postId: string | number;
+let isActive: number | boolean | string;
+
+const sum = (a: number, b: string) => {
+	return a + b;
+};
+
+const hello = sum(a, b);
+
+console.log(hello);
+
+let re: RegExp = /\w+/g;
