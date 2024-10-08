@@ -1,27 +1,88 @@
-let myName: string;
-let meaningLife: number;
-let isLoading: boolean;
-let album: any;
+let stringArr = ["one", "hey", "dev"];
 
-myName = "Hassan";
-isLoading = true;
-meaningLife = 45;
-album = true;
+let guitars = ["Sirat", "Les Paul", 1515];
 
-console.log(myName);
+let mixedData = ["EVH", 1984, true];
 
-let a = 12;
-let b = "6";
+stringArr[0] = "Jhon";
+stringArr.push("hey");
 
-let postId: string | number;
-let isActive: number | boolean | string;
+guitars[0] = 1984;
 
-const sum = (a: number, b: string) => {
-	return a + b;
+guitars.unshift("ths is the end");
+
+// Array
+let test = [];
+let bands: string[] = [];
+
+bands.push("hello", "klsklks");
+
+// console.log(bands);
+
+let myTuple: [string, number, boolean] = ["dave", 42, true];
+
+let mixed = ["Jhon", 1, false];
+
+myTuple[1] = 42;
+
+// Objects
+
+let myObj: object;
+myObj = [];
+// console.log(typeof myObj);
+
+myObj = bands;
+
+myObj = {};
+
+const exampleObj = {
+	prop1: "Dave",
+	prop2: true,
 };
 
-const hello = sum(a, b);
+exampleObj.prop1 = "jhon";
 
-console.log(hello);
+// type Guitarist = {
+// 	name: string;
+// 	active: boolean;
+// 	albums: (string | number)[];
+// };
 
-let re: RegExp = /\w+/g;
+// we can use type as well as interface but there is a difference between them
+
+interface Guitarist {
+	name: string;
+	active: boolean;
+	albums: (string | number)[];
+}
+
+let evh: Guitarist = {
+	name: "Eddie",
+	active: false,
+	albums: [1984, 5150, "OU812"],
+};
+
+let jp: Guitarist = {
+	name: "Jimmy",
+	active: false,
+	albums: ["I", "II", "IV"],
+};
+
+const greetGuitartist = (guitarist: Guitarist) => {
+	if (guitarist.name) {
+		return `Hello ${guitarist.name.toUpperCase()}!`;
+	}
+	return "Hello";
+};
+
+enum Grade {
+	U = 1,
+	D,
+	C,
+	B,
+	A,
+}
+
+console.log(greetGuitartist(jp));
+
+console.log(Grade.U);
