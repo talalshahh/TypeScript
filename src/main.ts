@@ -1,88 +1,102 @@
-let stringArr = ["one", "hey", "dev"];
+// Type Alisas
 
-let guitars = ["Sirat", "Les Paul", 1515];
+type stringOrNumber = string | number;
 
-let mixedData = ["EVH", 1984, true];
+type sringOrNumberArray = (string | number)[];
 
-stringArr[0] = "Jhon";
-stringArr.push("hey");
-
-guitars[0] = 1984;
-
-guitars.unshift("ths is the end");
-
-// Array
-let test = [];
-let bands: string[] = [];
-
-bands.push("hello", "klsklks");
-
-// console.log(bands);
-
-let myTuple: [string, number, boolean] = ["dave", 42, true];
-
-let mixed = ["Jhon", 1, false];
-
-myTuple[1] = 42;
-
-// Objects
-
-let myObj: object;
-myObj = [];
-// console.log(typeof myObj);
-
-myObj = bands;
-
-myObj = {};
-
-const exampleObj = {
-	prop1: "Dave",
-	prop2: true,
-};
-
-exampleObj.prop1 = "jhon";
-
-// type Guitarist = {
-// 	name: string;
-// 	active: boolean;
-// 	albums: (string | number)[];
-// };
-
-// we can use type as well as interface but there is a difference between them
-
-interface Guitarist {
-	name: string;
+type Guitartist = {
+	name?: string;
 	active: boolean;
 	albums: (string | number)[];
-}
-
-let evh: Guitarist = {
-	name: "Eddie",
-	active: false,
-	albums: [1984, 5150, "OU812"],
 };
 
-let jp: Guitarist = {
-	name: "Jimmy",
-	active: false,
-	albums: ["I", "II", "IV"],
+type UserId = stringOrNumber;
+
+//Literal Types
+
+let myName: "Dave";
+let userName: "Dave" | "John" | "Amy";
+userName = "Dave";
+
+// functions
+
+const add = (a: number, b: number) => {
+	return a + b;
 };
 
-const greetGuitartist = (guitarist: Guitarist) => {
-	if (guitarist.name) {
-		return `Hello ${guitarist.name.toUpperCase()}!`;
+const logMsg = (message: any): void => {
+	// there is no return so we can write void
+
+	console.log(message);
+};
+
+// logMsg("game");
+// logMsg(12);
+// logMsg(add(1, 2));
+// logMsg(add(12, 12));
+
+let subtarct = (a: number, b: number): number => {
+	return a - b;
+};
+
+type mathFunction = (a: number, b: number) => number;
+
+// interface
+// interface mathFunction {
+// 	(a: number, b: number): number;
+// }
+
+let multiply: mathFunction = function (c, d) {
+	return c * d;
+};
+
+// logMsg(multiply(3, 5));
+
+// optional parameter
+
+const addAll = (a: number, b: number, c: number = 2): number => {
+	if (typeof c !== "undefined") {
+		return a + b + c;
 	}
-	return "Hello";
+	return a + b;
 };
 
-enum Grade {
-	U = 1,
-	D,
-	C,
-	B,
-	A,
-}
+//default param value
 
-console.log(greetGuitartist(jp));
+const sumAll = (a: number = 10, b: number, c: number = 2): number => {
+	return a + b + c;
+};
 
-console.log(Grade.U);
+logMsg(addAll(2, 3, 5));
+logMsg(addAll(45, 50, 60));
+logMsg(sumAll(undefined, 10, 15));
+
+// Rest Parameters
+const total = (a: number, ...nums: number[]): number => {
+	return nums.reduce((prev, curr) => prev + curr);
+};
+
+logMsg(total(1, 2, 4, 3, 6));
+
+const createError = (errMsg: string): never => {
+	throw new Error(errMsg);
+};
+
+const infinite = () => {
+	let i: number = 1;
+	while (true) {
+		i++;
+		if (i > 100) break;
+	}
+};
+
+const isNumber = (value: any): boolean => {
+	return typeof value === "number" ? true : false;
+};
+
+// use of the never type
+const numberOrString = (value: number | string): string => {
+	if (typeof value === "string") return "string";
+	if (typeof value === "number") return "number";
+	return createError("This should never happen!");
+};
